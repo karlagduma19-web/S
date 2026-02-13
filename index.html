@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Valentine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Floating Hearts -->
+  <div id="hearts"></div>
+
+  <!-- Scene 1 -->
+  <div id="scene1" class="scene active">
+    <h1>Hello my Valentine</h1>
+    <button id="hiBtn">hi</button>
+  </div>
+
+  <!-- Scene 2 -->
+  <div id="scene2" class="scene">
+    <h2>Will you please be my valentine forever?</h2>
+    <div class="choices">
+      <button id="noBtn">no</button>
+      <button id="maybeBtn">maybe</button>
+      <button id="yesBtn">yes</button>
+    </div>
+  </div>
+
+  <!-- Flower Scene -->
+  <div id="flowerScene" class="scene">
+    <div class="flower">🌸</div>
+  </div>
+
+  <!-- Slideshow -->
+  <div id="slideshow" class="scene"></div>
+
+  <!-- Video -->
+  <div id="videoScene" class="scene">
+    <video id="finalVideo" src="video.mp4" autoplay playsinline></video>
+  </div>
+
+  <!-- Final -->
+  <div id="finalScene" class="scene final">
+    <h1>Forever yours,<br>Karlo</h1>
+  </div>
+
+  <audio id="music" src="music.mp3"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
