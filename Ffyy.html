@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+meta charset="UTF-8">
+  <title>Valentine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  
+
+<!-- Cute romantic fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+  <script src="script.js"></script>
+body {
+  background: linear-gradient(#ffe6ee, #ffd6e0);
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* Scenes */
+.scene {
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+}
+
+.scene.active {
+  display: flex;
+}
+
+/* Text */
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: #ff4d6d;
+}
+
+h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  color: #ff5c8a;
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+button {
+  padding: 12px 25px;
+  margin: 10px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  background: #ff85a1;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+#yesBtn {
+  background: #ff3366;
+}
+
+/* Flower */
+.flower {
+  font-size: 6rem;
+  animation: bloom 3s ease forwards;
+}
+
+@keyframes bloom {
+  from { transform: scale(0); }
+  to { transform: scale(1.5); }
+}
+
+/* Slideshow */
+.slide-img {
+  position: absolute;
+  width: 70%;
+  max-height: 80%;
+  border-radius: 20px;
+  animation: slideUp 1.3s ease forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Video */
+video {
+  width: 85%;
+  max-width: 600px;
+  border-radius: 20px;
+}
+
+/* Final */
+.final {
+  background: black;
+}
+
+.final h1 {
+  color: white;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 20px;
+  animation: floatUp linear forwards;
+  opacity: 0.8;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Floating hearts container -->
+<div id="hearts"></div>
+
+<!-- Scene 1 -->
+<div id="scene1" class="scene active">
+  <h1>Hello my Valentine</h1>
+  <button id="hiBtn">hi</button>
+</div>
+
+<!-- Scene 2 -->
+<div id="scene2" class="scene">
+  <h2>Will you please be my valentine forever?</h2>
+  <button id="noBtn">no</button>
+  <button id="maybeBtn">maybe</button>
+  <button id="yesBtn">yes</button>
+</div>
+
+<!-- Flower Scene -->
+<div id="flowerScene" class="scene">
+  <div class="flower">🌸</div>
+</div>
+
+<!-- Slideshow -->
+<div id="slideshow" class="scene"></div>
+
+<!-- Video -->
+<div id="videoScene" class="scene">
+  <video id="finalVideo" src="video.mp4" autoplay playsinline></video>
+</div>
+
+<!-- Final -->
+<div id="finalScene" class="scene final">
+  <h1>Forever yours,<br>Karlo</h1>
+</div>
+
+<audio id="music" src="music.mp3"></audio>
+
+<script>
+const scene1 = document.getElementById("scene1");
+const scene2 = document.getElementById("scene2");
+const flowerScene = document.getElementById("flowerScene");
+const slideshow = document.getElementById("slideshow");
+const videoScene = document.getElementById("videoScene");
+const finalScene = document.getElementById("finalScene");
+
+const hiBtn = document.getElementById("hiBtn");
+const noBtn = document.getElementById("noBtn");
+const maybeBtn = document.getElementById("maybeBtn");
+const yesBtn = document.getElementById("yesBtn");
+
+const music = document.getElementById("music");
+const video = document.getElementById("finalVideo");
+
+let yesScale = 1;
+
+/* Floating hearts */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+  document.getElementById("hearts").appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 500);
+
+/* Scene transitions */
+hiBtn.onclick = () => {
+  scene1.classList.remove("active");
+  scene2.classList.add("active");
+};
+
+/* Grow yes button */
+function growYes() {
+  yesScale += 0.25;
+  yesBtn.style.transform = `scale(${yesScale})`;
+}
+
+maybeBtn.onclick = growYes;
+
+/* No button runs away */
+noBtn.onmouseover = () => {
+  noBtn.style.position = "absolute";
+  noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+  noBtn.style.top = Math.random() * (window.innerHeight - 100) + "px";
+  growYes();
+};
+
+/* Yes clicked */
+yesBtn.onclick = () => {
+  scene2.classList.remove("active");
+  flowerScene.classList.add("active");
+  music.play();
+  setTimeout(startSlideshow, 3000);
+};
+
+/* Slideshow logic */
+function startSlideshow() {
+  flowerScene.classList.remove("active");
+  slideshow.classList.add("active");
+
+  let index = 1;
+  const totalImages = 30;
+  const totalTime = 40000;
+  const interval = totalTime / totalImages;
+
+  const slideTimer = setInterval(() => {
+    if (index > totalImages) {
+      clearInterval(slideTimer);
+      endSlideshow();
+      return;
+    }
+
+    const img = document.createElement("img");
+    img.src = `images/img${index}.jpg`;
+    img.className = "slide-img";
+    slideshow.appendChild(img);
+
+    setTimeout(() => img.remove(), interval - 200);
+    index++;
+  }, interval);
+
+  setTimeout(() => {
+    music.pause();
+    music.currentTime = 0;
+  }, totalTime);
+}
+
+/* Video then final */
+function endSlideshow() {
+  slideshow.classList.remove("active");
+  videoScene.classList.add("active");
+  video.play();
+
+  video.onended = () => {
+    videoScene.classList.remove("active");
+    finalScene.classList.add("active");
+  };
+}
+</script>
+
+</body>
+</html>
