@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(#ffe6ee, #ffd6e0);
+  font-family: 'Quicksand', sans-serif;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.scene {
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.scene.active {
+  display: flex;
+}
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: #ff4d6d;
+}
+
+h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  color: #ff5c8a;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 12px 25px;
+  margin: 10px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  background: #ff85a1;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+#yesBtn {
+  background: #ff3366;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+.choices {
+  position: relative;
+}
+
+.flower {
+  font-size: 6rem;
+  animation: bloom 3s ease forwards;
+}
+
+@keyframes bloom {
+  from { transform: scale(0); }
+  to { transform: scale(1.5); }
+}
+
+/* Slideshow */
+.slide-img {
+  position: absolute;
+  width: 70%;
+  max-height: 80%;
+  border-radius: 20px;
+  animation: slideUp 1.3s ease forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Video */
+#videoScene video {
+  width: 85%;
+  max-width: 600px;
+  border-radius: 20px;
+}
+
+/* Final */
+.final {
+  background: black;
+  color: white;
+}
+
+.final h1 {
+  color: white;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 20px;
+  animation: floatUp linear forwards;
+  opacity: 0.8;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
